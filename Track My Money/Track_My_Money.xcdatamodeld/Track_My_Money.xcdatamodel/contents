@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="IOU" representedClassName="IOU" syncable="YES">
+        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <attribute name="notes" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="peopleLink" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IOUPersonLink" inverseName="iou" inverseEntity="IOUPersonLink" syncable="YES"/>
+    </entity>
+    <entity name="IOUPersonLink" representedClassName="IOUPersonLink" syncable="YES">
+        <attribute name="amountOwed" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="amountPaid" attributeType="Decimal" defaultValueString="0" syncable="YES"/>
+        <attribute name="paidOn" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="iou" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="IOU" inverseName="peopleLink" inverseEntity="IOU" syncable="YES"/>
+        <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="ious" inverseEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="Person" representedClassName="Person" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="ious" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IOUPersonLink" inverseName="person" inverseEntity="IOUPersonLink" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="IOU" positionX="-81" positionY="309" width="128" height="105"/>
+        <element name="IOUPersonLink" positionX="133" positionY="201" width="128" height="120"/>
+        <element name="Person" positionX="313" positionY="189" width="128" height="75"/>
+    </elements>
+</model>
